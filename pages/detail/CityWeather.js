@@ -5,18 +5,19 @@
  */
 
 import React, { Component } from 'react';
-import { createStackNavigator } from 'react-navigation';
 import Geocoder from 'react-native-geocoding';
+import { createStackNavigator,DrawerNavigator,createDrawerNavigator } from 'react-navigation';
 import { Dimensions,View,ImageBackground,StyleSheet,ActivityIndicator,FlatList,Text,Image,TextInput,Button,TouchableOpacity } from 'react-native';
+import Weather from './Weather.js'
 const ITEM_WIDTH = Dimensions.get('window').width
 
-export default class CityWeather extends React.Component {
-   
-  static navigationOptions = ({ navigation }) => {
+ class CityWeather extends React.Component {
+ 
+   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
-
     return {
       title: params.headerPage
+    
     
     };
   }
@@ -42,13 +43,11 @@ export default class CityWeather extends React.Component {
   }
 
   componentDidMount(){
-    //fetch(`https://api.parse.com/1/users?foo=${encodeURIComponent(data.foo)}&bar=${encodeURIComponent(data.bar)}`
     
     const { navigation } = this.props;
     const city = navigation.getParam('cityOfWeather');
-
-    //For describing header from outside the navigation option
-    this.props.navigation.setParams({ headerPage: city });
+  
+     this.props.navigation.setParams({ headerPage: city });
     
   
     return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)},tr&appid=557b6fb541506e90034bf7116dc26b0e`)
@@ -64,6 +63,7 @@ export default class CityWeather extends React.Component {
         });
 
       })
+      
        
      
       .catch((error) =>{
@@ -157,3 +157,26 @@ width:100,
 }  
 
 })
+
+
+
+
+  export default MyApp = createDrawerNavigator({
+   
+  CityWeather:{
+    screen:CityWeather
+  },
+
+  CurrentWeather:{
+    screen:Weather,
+  },
+},
+  
+  {
+    drawerPosition:'right',
+    initialRouteName:'CityWeather',
+    drawerWidth:200,
+       
+  }
+
+  );

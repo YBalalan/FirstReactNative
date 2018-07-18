@@ -63,7 +63,10 @@ export default class HomePage extends React.Component {
     const { navigation } = this.props;
     this.props.navigation.navigate('CityScreen', {
               cityOfWeather:this.state.city
-           });
+          });
+
+
+    
         
            
      }

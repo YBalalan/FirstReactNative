@@ -5,10 +5,12 @@
  */
 
 import React, { Component } from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator,DrawerNavigator } from 'react-navigation';
 import HomePage from './pages/HomePage.js'
-import CityWeather from './pages/detail/CityWeather.js'
+import MyApp from './pages/detail/CityWeather.js'
 import LocationPage from './pages/detail/Location.js'
+import Weather from './pages/detail/Weather.js'
+
 
 
 
@@ -26,15 +28,15 @@ import {
 } from 'react-native';
 
 
+
+
+
 const RootStack = createStackNavigator(
-  
-  {
+   {
 
    LocationScreen:LocationPage,
     HomeScreen:HomePage,
-    CityScreen:CityWeather,
-  
-
+    CityScreen:MyApp,
    },
    {
 
@@ -43,6 +45,8 @@ const RootStack = createStackNavigator(
     initialRouteName: 'LocationScreen',
   }
 );
+
+
 
 
 
