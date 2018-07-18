@@ -10,6 +10,15 @@ import Geocoder from 'react-native-geocoding';
 import { View,ImageBackground,StyleSheet,ActivityIndicator,FlatList,Text,Image,TextInput,Button,TouchableOpacity } from 'react-native';
 
 export default class CityWeather extends React.Component {
+   
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+
+    return {
+      title: params.headerPage
+    
+    };
+  }
 
 
   //it is used for hide weather from page
@@ -20,17 +29,23 @@ export default class CityWeather extends React.Component {
       isLoading:false,
       imageSource:'',
       imageString:'',
+      cityName:'',
      
       }
+   
+
+   
+    
   }
 
   componentDidMount(){
     //fetch(`https://api.parse.com/1/users?foo=${encodeURIComponent(data.foo)}&bar=${encodeURIComponent(data.bar)}`
     
     const { navigation } = this.props;
-    const city = navigation.getParam('cityOfWeather');
+    const city = navigaationtion.getParam('cityOfWeather');
 
-    console.warn(city)
+    //For describing header from outside the navigation option
+    this.props.navigation.setParams({ headerPage: city });
     
   
     return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)},tr&appid=557b6fb541506e90034bf7116dc26b0e`)
@@ -40,19 +55,21 @@ export default class CityWeather extends React.Component {
         this.setState({
           isLoading: false,
           list: responseJson.list,
+          cityName:city,
         }, function(){
 
         });
 
       })
-      console.warn(response.json)
+       
+     
       .catch((error) =>{
         console.error(error);
       });
-     }
-
+     
+}
   render() {
-   if(this.state.isLoading){
+    if(this.state.isLoading){
         return (
           <ImageBackground source={require('../Images/rain.jpg')} style={styles.container}>
             <ActivityIndicator size="large" style={styles.activityIndicatorStyle} />

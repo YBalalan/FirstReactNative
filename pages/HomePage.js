@@ -77,7 +77,7 @@ export default class HomePage extends React.Component {
           </ImageBackground>
         );}else{
           return(
-            <View style={styles.container}>
+            <ImageBackground source={require('./Images/rain.jpg')} style={styles.container}>
               <View style={styles.rowContainer}>
                 <TextInput style = {styles.textInputStyle}
                   underlineColorAndroid = "transparent"
@@ -113,7 +113,7 @@ export default class HomePage extends React.Component {
                 }
                keyExtractor={(item, index) => index}
             />
-          </View>
+          </ImageBackground>
           )
         }
       }
@@ -131,11 +131,10 @@ const styles = StyleSheet.create({
    rowContainer:{
     height:60,
     width:'100%',
-    marginRight:10,
-    marginLeft:10,
     flexDirection:'row',
     alignItems:'center',
-    justifyContent:'space-between'
+    justifyContent:'space-between',
+    backgroundColor:'#BDBDBD'
    
     
     },
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
      justifyContent:'center',
      alignItems:'center',
      backgroundColor:'#6E6E6E',
-     marginTop:10,
+     marginBottom:10,
   },
 
  activityIndicatorStyle:{
