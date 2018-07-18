@@ -24,6 +24,7 @@ import { Dimensions,View,ImageBackground,StyleSheet,ActivityIndicator,FlatList,T
       isLoading:false,
       cityName:'',
       temp:'',
+      description:'',
      
       }
    
@@ -48,11 +49,13 @@ import { Dimensions,View,ImageBackground,StyleSheet,ActivityIndicator,FlatList,T
           isLoading: false,
           temp:parseInt(responseJson.main.temp-272.35,10),
           cityName:city,
+          description:responseJson.weather[0].description,
         }, function(){
 
         });
-
       })
+
+     
       
        
      
@@ -70,9 +73,9 @@ import { Dimensions,View,ImageBackground,StyleSheet,ActivityIndicator,FlatList,T
           </ImageBackground>
         );}else{
           return(
-            <View style={styles.container}>
-              <Text>{this.state.temp}</Text>
-          </View>
+            <ImageBackground source={require('../Images/rain.jpg')} style={styles.container}>
+              <Text style={styles.tempText}> {this.state.temp}</Text>
+          </ImageBackground>
           )
         }
       }
@@ -86,7 +89,6 @@ const styles = StyleSheet.create({
      flexDirection:'column',
      justifyContent:'center',
      alignItems:'center',
-    
   },
 
    rowContainer:{
@@ -96,8 +98,7 @@ const styles = StyleSheet.create({
     marginLeft:10,
     flexDirection:'row',
     alignItems:'center',
-    justifyContent:'space-between',
-    backgroundColor:'#ccc'
+   backgroundColor:'#ccc'
 },
 
 tempView:{
@@ -125,7 +126,11 @@ tempView:{
 textInputStyle:{
 borderColor: '#7a42f4',
 width:100,
+},
 
-}  
+tempText:{
+  fontSize: 80,
+  fontWeight: 'bold',
+}
 
 })
