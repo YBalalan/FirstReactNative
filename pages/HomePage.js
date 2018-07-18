@@ -41,7 +41,7 @@ export default class HomePage extends React.Component {
   const longitude = navigation.getParam('lon');
   console.warn(latitude)
   console.warn(longitude)
-  return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=557b6fb541506e90034bf7116dc26b0e`)
+  return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=0&lon=0&appid=557b6fb541506e90034bf7116dc26b0e`)
    .then((response) => response.json())
       .then((responseJson) => {
 
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
      flex:1,
      flexDirection:'column',
      justifyContent:'center',
+   
   },
 
    rowContainer:{
@@ -134,10 +135,9 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'space-between',
-    backgroundColor:'#BDBDBD'
-   
-    
-    },
+    backgroundColor:'#fff',
+    borderRadius:10,
+  },
 
    tempView:{
      height:80,
@@ -145,8 +145,9 @@ const styles = StyleSheet.create({
      flexDirection:'column',
      justifyContent:'center',
      alignItems:'center',
-     backgroundColor:'#6E6E6E',
-     marginBottom:10,
+     backgroundColor:'#fff',
+     marginTop:10,
+     borderRadius:10,
   },
 
  activityIndicatorStyle:{

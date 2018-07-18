@@ -7,7 +7,8 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 import Geocoder from 'react-native-geocoding';
-import { View,ImageBackground,StyleSheet,ActivityIndicator,FlatList,Text,Image,TextInput,Button,TouchableOpacity } from 'react-native';
+import { Dimensions,View,ImageBackground,StyleSheet,ActivityIndicator,FlatList,Text,Image,TextInput,Button,TouchableOpacity } from 'react-native';
+const ITEM_WIDTH = Dimensions.get('window').width
 
 export default class CityWeather extends React.Component {
    
@@ -19,6 +20,8 @@ export default class CityWeather extends React.Component {
     
     };
   }
+
+ X
 
 
   //it is used for hide weather from page
@@ -42,7 +45,7 @@ export default class CityWeather extends React.Component {
     //fetch(`https://api.parse.com/1/users?foo=${encodeURIComponent(data.foo)}&bar=${encodeURIComponent(data.bar)}`
     
     const { navigation } = this.props;
-    const city = navigaationtion.getParam('cityOfWeather');
+    const city = navigation.getParam('cityOfWeather');
 
     //For describing header from outside the navigation option
     this.props.navigation.setParams({ headerPage: city });
@@ -80,6 +83,7 @@ export default class CityWeather extends React.Component {
             <View style={styles.container}>
             <FlatList
               data={this.state.list} 
+              numColumns={2}
               renderItem={({item}) => 
              
             
@@ -109,6 +113,8 @@ const styles = StyleSheet.create({
      flex:1,
      flexDirection:'column',
      justifyContent:'center',
+     alignItems:'center',
+    
   },
 
    rowContainer:{
@@ -118,19 +124,20 @@ const styles = StyleSheet.create({
     marginLeft:10,
     flexDirection:'row',
     alignItems:'center',
-    justifyContent:'space-between'
-   
-    
-    },
+    justifyContent:'space-between',
+    backgroundColor:'#ccc'
+},
 
-   tempView:{
-     height:80,
-     width:'100%',
+tempView:{
+     height:200,
+     width:160,
      flexDirection:'column',
      justifyContent:'center',
      alignItems:'center',
-     backgroundColor:'#6E6E6E',
-     marginTop:10,
+     backgroundColor:'#fff',
+     borderRadius:10,
+     flexWrap: 'wrap',
+     margin:5,
   },
 
  activityIndicatorStyle:{
