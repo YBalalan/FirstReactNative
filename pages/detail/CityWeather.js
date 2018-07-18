@@ -164,7 +164,7 @@ width:100,
   export default MyApp = createDrawerNavigator({
    
   CityWeather:{
-    screen:CityWeather
+    screen:CityWeather,
   },
 
   CurrentWeather:{
