@@ -5,11 +5,12 @@
  */
 
 import React, { Component } from 'react';
-import { createStackNavigator,DrawerNavigator } from 'react-navigation';
+import { createStackNavigator,DrawerNavigator,createBottomTabNavigator } from 'react-navigation';
 import HomePage from './pages/HomePage.js'
 import MyApp from './pages/detail/CityWeather.js'
 import LocationPage from './pages/detail/Location.js'
 import Weather from './pages/detail/Weather.js'
+
 
 
 
@@ -45,6 +46,28 @@ const RootStack = createStackNavigator(
     initialRouteName: 'LocationScreen',
   }
 );
+const Weathertack = createStackNavigator(
+  {
+    
+    WeatherScreen:Weather,
+  
+  },
+  {
+
+  },
+ {
+ 
+ }
+);
+
+export default createBottomTabNavigator(
+  {
+    Home: RootStack,
+    Weather: Weathertack,
+ 
+
+  },
+)
 
 
 
@@ -52,9 +75,4 @@ const RootStack = createStackNavigator(
 
 
 
-export default class App extends React.Component {
-  render() {
-    return <RootStack />;
-  }
 
-}
